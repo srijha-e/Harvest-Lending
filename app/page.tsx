@@ -4,6 +4,17 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
   CheckCircle,
   DollarSign,
   Clock,
@@ -26,6 +37,14 @@ export default function HarvestLendingPage() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   const [counters, setCounters] = useState({ customers: 0, funded: 0, satisfaction: 0 })
   const [scrollY, setScrollY] = useState(0)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [formData, setFormData] = useState({
+    monthlyRevenue: "",
+    state: "",
+    email: "",
+    mobile: "",
+  })
+  const [calculatedRate, setCalculatedRate] = useState<{ min: number; max: number } | null>(null)
 
   useEffect(() => {
     setIsVisible(true)
@@ -50,6 +69,24 @@ export default function HarvestLendingPage() {
       window.removeEventListener("scroll", handleScroll)
     }
   }, [])
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
+  }
+
+  const calculateMyRate = () => {
+    const revenue = Number.parseFloat(formData.monthlyRevenue)
+    if (revenue && revenue > 0) {
+      const minRate = Math.round(revenue * 1.0) // 100% of monthly revenue
+      const maxRate = Math.round(revenue * 1.5) // 150% of monthly revenue
+      setCalculatedRate({ min: minRate, max: maxRate })
+    }
+  }
+
+  const resetDialog = () => {
+    setFormData({ monthlyRevenue: "", state: "", email: "", mobile: "" })
+    setCalculatedRate(null)
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -169,14 +206,174 @@ export default function HarvestLendingPage() {
               Get Pre-Approved
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 group-hover:scale-125 transition-transform duration-300" />
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white bg-transparent hover:scale-110 hover:rotate-1 transition-all duration-300 hover:shadow-xl"
+            <Dialog
+              open={isDialogOpen}
+              onOpenChange={(open) => {
+                setIsDialogOpen(open)
+                if (!open) resetDialog()
+              }}
             >
-              <Calculator className="mr-2 h-4 w-4 animate-wiggle" />
-              Calculate Rates
-            </Button>
+              <DialogTrigger asChild>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white bg-transparent hover:scale-110 hover:rotate-1 transition-all duration-300 hover:shadow-xl"
+                >
+                  <Calculator className="mr-2 h-4 w-4 animate-wiggle" />
+                  Calculate Rates
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                    <Calculator className="h-6 w-6 text-blue-600" />
+                    Calculate Your Rate
+                  </DialogTitle>
+                  <DialogDescription className="text-gray-600">
+                    Get an instant estimate of your funding potential based on your monthly revenue.
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div className="space-y-4 py-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="monthlyRevenue" className="text-sm font-medium text-gray-700">
+                      Monthly Revenue ($)
+                    </Label>
+                    <Input
+                      id="monthlyRevenue"
+                      type="number"
+                      placeholder="Enter your monthly revenue"
+                      value={formData.monthlyRevenue}
+                      onChange={(e) => handleInputChange("monthlyRevenue", e.target.value)}
+                      className="border-gray-300 focus:border-blue-500"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="state" className="text-sm font-medium text-gray-700">
+                      State
+                    </Label>
+                    <Select value={formData.state} onValueChange={(value) => handleInputChange("state", value)}>
+                      <SelectTrigger className="border-gray-300 focus:border-blue-500">
+                        <SelectValue placeholder="Select your state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="AL">Alabama</SelectItem>
+                        <SelectItem value="AK">Alaska</SelectItem>
+                        <SelectItem value="AZ">Arizona</SelectItem>
+                        <SelectItem value="AR">Arkansas</SelectItem>
+                        <SelectItem value="CA">California</SelectItem>
+                        <SelectItem value="CO">Colorado</SelectItem>
+                        <SelectItem value="CT">Connecticut</SelectItem>
+                        <SelectItem value="DE">Delaware</SelectItem>
+                        <SelectItem value="FL">Florida</SelectItem>
+                        <SelectItem value="GA">Georgia</SelectItem>
+                        <SelectItem value="HI">Hawaii</SelectItem>
+                        <SelectItem value="ID">Idaho</SelectItem>
+                        <SelectItem value="IL">Illinois</SelectItem>
+                        <SelectItem value="IN">Indiana</SelectItem>
+                        <SelectItem value="IA">Iowa</SelectItem>
+                        <SelectItem value="KS">Kansas</SelectItem>
+                        <SelectItem value="KY">Kentucky</SelectItem>
+                        <SelectItem value="LA">Louisiana</SelectItem>
+                        <SelectItem value="ME">Maine</SelectItem>
+                        <SelectItem value="MD">Maryland</SelectItem>
+                        <SelectItem value="MA">Massachusetts</SelectItem>
+                        <SelectItem value="MI">Michigan</SelectItem>
+                        <SelectItem value="MN">Minnesota</SelectItem>
+                        <SelectItem value="MS">Mississippi</SelectItem>
+                        <SelectItem value="MO">Missouri</SelectItem>
+                        <SelectItem value="MT">Montana</SelectItem>
+                        <SelectItem value="NE">Nebraska</SelectItem>
+                        <SelectItem value="NV">Nevada</SelectItem>
+                        <SelectItem value="NH">New Hampshire</SelectItem>
+                        <SelectItem value="NJ">New Jersey</SelectItem>
+                        <SelectItem value="NM">New Mexico</SelectItem>
+                        <SelectItem value="NY">New York</SelectItem>
+                        <SelectItem value="NC">North Carolina</SelectItem>
+                        <SelectItem value="ND">North Dakota</SelectItem>
+                        <SelectItem value="OH">Ohio</SelectItem>
+                        <SelectItem value="OK">Oklahoma</SelectItem>
+                        <SelectItem value="OR">Oregon</SelectItem>
+                        <SelectItem value="PA">Pennsylvania</SelectItem>
+                        <SelectItem value="RI">Rhode Island</SelectItem>
+                        <SelectItem value="SC">South Carolina</SelectItem>
+                        <SelectItem value="SD">South Dakota</SelectItem>
+                        <SelectItem value="TN">Tennessee</SelectItem>
+                        <SelectItem value="TX">Texas</SelectItem>
+                        <SelectItem value="UT">Utah</SelectItem>
+                        <SelectItem value="VT">Vermont</SelectItem>
+                        <SelectItem value="VA">Virginia</SelectItem>
+                        <SelectItem value="WA">Washington</SelectItem>
+                        <SelectItem value="WV">West Virginia</SelectItem>
+                        <SelectItem value="WI">Wisconsin</SelectItem>
+                        <SelectItem value="WY">Wyoming</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                      Email Address
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      className="border-gray-300 focus:border-blue-500"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="mobile" className="text-sm font-medium text-gray-700">
+                      Mobile Number
+                    </Label>
+                    <Input
+                      id="mobile"
+                      type="tel"
+                      placeholder="Enter your mobile number"
+                      value={formData.mobile}
+                      onChange={(e) => handleInputChange("mobile", e.target.value)}
+                      className="border-gray-300 focus:border-blue-500"
+                    />
+                  </div>
+
+                  <Button
+                    onClick={calculateMyRate}
+                    className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 hover:scale-105 transition-all duration-300"
+                    disabled={!formData.monthlyRevenue || !formData.state || !formData.email || !formData.mobile}
+                  >
+                    <Calculator className="mr-2 h-4 w-4" />
+                    Calculate My Rate
+                  </Button>
+
+                  {calculatedRate && (
+                    <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <h4 className="text-lg font-semibold text-blue-800 mb-2 flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5" />
+                        Your Estimated Funding Range
+                      </h4>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-blue-600 mb-2">
+                          ${calculatedRate.min.toLocaleString()} - ${calculatedRate.max.toLocaleString()}
+                        </div>
+                        <p className="text-sm text-gray-600 mb-4">Based on 100% to 150% of your monthly revenue</p>
+                        <Button
+                          size="sm"
+                          className="bg-blue-600 hover:bg-blue-500 text-white"
+                          onClick={() => setIsDialogOpen(false)}
+                        >
+                          Apply Now
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </section>
