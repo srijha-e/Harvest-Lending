@@ -25,22 +25,30 @@ export default function HarvestLendingPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   const [counters, setCounters] = useState({ customers: 0, funded: 0, satisfaction: 0 })
+  const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
     setIsVisible(true)
+
     const timer = setTimeout(() => {
       const interval = setInterval(() => {
         setCounters((prev) => ({
           customers: prev.customers < 1000 ? prev.customers + 10 : 1000,
           funded: prev.funded < 50 ? prev.funded + 1 : 50,
-          satisfaction: prev.satisfaction < 92 ? prev.satisfaction + 1 : 92,
+          satisfaction: prev.satisfaction < 95 ? prev.satisfaction + 1 : 95,
         }))
       }, 50)
 
       setTimeout(() => clearInterval(interval), 2000)
     }, 1000)
 
-    return () => clearTimeout(timer)
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [])
 
   return (
@@ -56,47 +64,49 @@ export default function HarvestLendingPage() {
               alt="Harvest Lending Logo"
               width={40}
               height={40}
-              className="rounded-lg animate-pulse"
+              className="rounded-lg hover:animate-bounce transition-all duration-300"
             />
-            <h1 className="text-2xl font-black font-[family-name:var(--font-montserrat)]">Harvest Lending</h1>
+            <h1 className="text-2xl font-black font-[family-name:var(--font-montserrat)] hover:text-blue-300 transition-colors duration-300">
+              Harvest Lending
+            </h1>
           </div>
           <nav
             className={`hidden md:flex items-center space-x-6 transition-all duration-700 delay-300 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
           >
             <a
               href="#services"
-              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-105 relative group"
+              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110 relative group"
             >
               Services
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#about"
-              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-105 relative group"
+              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110 relative group"
             >
               About
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#testimonials"
-              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-105 relative group"
+              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110 relative group"
             >
               Reviews
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#contact"
-              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-105 relative group"
+              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110 relative group"
             >
               Contact
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <Button
               variant="secondary"
-              className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-105 transition-all duration-300 group shadow-lg hover:shadow-xl"
+              className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-110 hover:rotate-2 transition-all duration-300 group shadow-lg hover:shadow-2xl animate-pulse-slow"
             >
               Apply Now
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 group-hover:scale-125 transition-transform duration-300" />
             </Button>
           </nav>
         </div>
@@ -105,37 +115,45 @@ export default function HarvestLendingPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-50 to-blue-50 py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-20 h-20 bg-blue-400/20 rounded-full animate-pulse"></div>
           <div
-            className="absolute top-40 right-20 w-32 h-32 bg-slate-300/10 rounded-full animate-bounce"
-            style={{ animationDelay: "1s", animationDuration: "3s" }}
+            className="absolute top-20 left-10 w-20 h-20 bg-blue-400/20 rounded-full animate-bounce-slow"
+            style={{ transform: `translateY(${scrollY * 0.1}px)` }}
           ></div>
           <div
-            className="absolute bottom-20 left-1/4 w-16 h-16 bg-blue-500/20 rounded-full animate-pulse"
-            style={{ animationDelay: "2s" }}
+            className="absolute top-40 right-20 w-32 h-32 bg-slate-300/10 rounded-full animate-spin-slow"
+            style={{ animationDelay: "1s", animationDuration: "8s", transform: `translateY(${scrollY * 0.15}px)` }}
           ></div>
-          <div className="absolute top-1/3 left-1/3 animate-float">
-            <DollarSign className="h-8 w-8 text-blue-400/30" />
+          <div
+            className="absolute bottom-20 left-1/4 w-16 h-16 bg-blue-500/20 rounded-full animate-pulse-slow"
+            style={{ animationDelay: "2s", transform: `translateY(${scrollY * 0.2}px)` }}
+          ></div>
+          <div className="absolute top-1/3 left-1/3 animate-float-complex">
+            <DollarSign className="h-8 w-8 text-blue-400/30 animate-wiggle" />
           </div>
-          <div className="absolute bottom-1/3 right-1/3 animate-float" style={{ animationDelay: "1.5s" }}>
-            <TrendingUp className="h-6 w-6 text-slate-500/30" />
+          <div className="absolute bottom-1/3 right-1/3 animate-float-complex" style={{ animationDelay: "1.5s" }}>
+            <TrendingUp className="h-6 w-6 text-slate-500/30 animate-wiggle" />
+          </div>
+          <div className="absolute top-1/2 right-10 animate-float-complex" style={{ animationDelay: "3s" }}>
+            <CheckCircle className="h-10 w-10 text-blue-300/20 animate-spin-slow" />
           </div>
         </div>
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <Badge
-            className={`mb-6 bg-blue-600 text-white border-blue-400/20 transition-all duration-1000 delay-500 animate-bounce ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+            className={`mb-6 bg-blue-600 text-white border-blue-400/20 transition-all duration-1000 delay-500 animate-bounce-gentle hover:scale-110 hover:rotate-2 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
           >
             ✨ Transforming small business funding Since 2015
           </Badge>
           <h2
-            className={`text-4xl lg:text-6xl font-black font-[family-name:var(--font-montserrat)] text-gray-800 mb-6 text-balance transition-all duration-1000 delay-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+            className={`text-4xl lg:text-6xl font-black font-[family-name:var(--font-montserrat)] text-gray-800 mb-6 text-balance transition-all duration-1000 delay-700 hover:scale-105 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
           >
             Developing relationships and solutions for the{" "}
-            <span className="text-blue-600 animate-pulse">modern-day business owner</span>
+            <span className="text-blue-600 animate-gradient-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-pulse-slow">
+              modern-day business owner
+            </span>
           </h2>
           <p
-            className={`text-xl text-gray-600 font-[family-name:var(--font-open-sans)] mb-8 max-w-3xl mx-auto text-pretty transition-all duration-1000 delay-900 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+            className={`text-xl text-gray-600 font-[family-name:var(--font-open-sans)] mb-8 max-w-3xl mx-auto text-pretty transition-all duration-1000 delay-900 hover:text-gray-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
           >
             At Harvest Lending, Our mission is to empower business owners to achieve their unique financial goals by
             providing comprehensive, tailored financial solutions. We strive to be the trusted partner that navigates
@@ -146,37 +164,56 @@ export default function HarvestLendingPage() {
           >
             <Button
               size="lg"
-              className="bg-blue-600 hover:bg-blue-500 text-white font-semibold hover:scale-105 transition-all duration-300 group shadow-lg hover:shadow-xl"
+              className="bg-blue-600 hover:bg-blue-500 text-white font-semibold hover:scale-110 hover:rotate-1 transition-all duration-300 group shadow-lg hover:shadow-2xl animate-pulse-gentle"
             >
               Get Pre-Approved
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 group-hover:scale-125 transition-transform duration-300" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white bg-transparent hover:scale-105 transition-all duration-300"
+              className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white bg-transparent hover:scale-110 hover:rotate-1 transition-all duration-300 hover:shadow-xl"
             >
-              <Calculator className="mr-2 h-4 w-4" />
+              <Calculator className="mr-2 h-4 w-4 animate-wiggle" />
               Calculate Rates
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-slate-800 text-white">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-slate-800 text-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 animate-gradient-shift"></div>
+          <div className="absolute top-10 right-10 w-24 h-24 bg-blue-400/10 rounded-full animate-float-slow"></div>
+          <div
+            className="absolute bottom-10 left-10 w-32 h-32 bg-blue-500/10 rounded-full animate-float-slow"
+            style={{ animationDelay: "2s" }}
+          ></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="animate-fade-in-up">
-              <div className="text-4xl font-bold mb-2">{counters.satisfaction}%</div>
-              <div className="text-slate-200">Client Success Rate</div>
+            <div className="animate-fade-in-up hover:scale-110 transition-all duration-500 cursor-pointer">
+              <div className="text-4xl font-bold mb-2 animate-number-count text-blue-400">{counters.satisfaction}%</div>
+              <div className="text-slate-200 hover:text-white transition-colors duration-300">Client Success Rate</div>
             </div>
-            <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-              <div className="text-4xl font-bold mb-2">24hr</div>
-              <div className="text-slate-200">Average Time to Funding</div>
+            <div
+              className="animate-fade-in-up hover:scale-110 transition-all duration-500 cursor-pointer"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <div className="text-4xl font-bold mb-2 text-blue-400 animate-pulse-gentle">24hr</div>
+              <div className="text-slate-200 hover:text-white transition-colors duration-300">
+                Average Time to Funding
+              </div>
             </div>
-            <div className="animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-              <div className="text-4xl font-bold mb-2">{counters.funded}M+</div>
-              <div className="text-slate-200">Total Capital Secured</div>
+            <div
+              className="animate-fade-in-up hover:scale-110 transition-all duration-500 cursor-pointer"
+              style={{ animationDelay: "0.4s" }}
+            >
+              <div className="text-4xl font-bold mb-2 animate-number-count text-blue-400">{counters.funded}M+</div>
+              <div className="text-slate-200 hover:text-white transition-colors duration-300">
+                Total Capital Secured
+              </div>
             </div>
           </div>
         </div>
@@ -185,10 +222,13 @@ export default function HarvestLendingPage() {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold font-[family-name:var(--font-montserrat)] text-gray-800 mb-4">
+            <h3 className="text-3xl font-bold font-[family-name:var(--font-montserrat)] text-black mb-4 animate-fade-in-up hover:scale-105 transition-all duration-300">
               Are You Struggling With These Business Challenges?
             </h3>
-            <p className="text-gray-600 font-[family-name:var(--font-open-sans)] max-w-2xl mx-auto">
+            <p
+              className="text-black font-[family-name:var(--font-open-sans)] max-w-2xl mx-auto animate-fade-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
               Real problems that business owners face every day - and how we solve them
             </p>
           </div>
@@ -227,20 +267,23 @@ export default function HarvestLendingPage() {
             ].map(({ icon: Icon, title, description, index, color }) => (
               <Card
                 key={index}
-                className={`border-gray-200 hover:shadow-xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 hover:rotate-1 ${hoveredCard === index ? `border-${color} shadow-lg` : ""}`}
+                className={`bg-white border-gray-200 hover:shadow-2xl transition-all duration-700 cursor-pointer transform hover:-translate-y-4 hover:rotate-2 hover:scale-105 animate-fade-in-up ${hoveredCard === index ? `border-${color} shadow-xl` : ""}`}
+                style={{ animationDelay: `${index * 0.1}s` }}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <CardHeader>
+                <CardHeader className="bg-white">
                   <div
-                    className={`w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 ${hoveredCard === index ? "bg-slate-200 scale-110 rotate-12" : ""}`}
+                    className={`w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-4 transition-all duration-500 ${hoveredCard === index ? "bg-slate-200 scale-125 rotate-45 animate-wiggle" : ""}`}
                   >
                     <Icon
-                      className={`h-6 w-6 text-${color} transition-all duration-300 ${hoveredCard === index ? "scale-110" : ""}`}
+                      className={`h-6 w-6 text-${color} transition-all duration-500 ${hoveredCard === index ? "scale-125 animate-spin-slow" : ""}`}
                     />
                   </div>
-                  <CardTitle className="font-[family-name:var(--font-montserrat)] text-gray-800">{title}</CardTitle>
-                  <CardDescription className="font-[family-name:var(--font-open-sans)] text-gray-600">
+                  <CardTitle className="font-[family-name:var(--font-montserrat)] text-black hover:text-blue-600 transition-colors duration-300 bg-white">
+                    {title}
+                  </CardTitle>
+                  <CardDescription className="font-[family-name:var(--font-open-sans)] text-black hover:text-gray-800 transition-colors duration-300 bg-white">
                     {description}
                   </CardDescription>
                 </CardHeader>
@@ -430,65 +473,80 @@ export default function HarvestLendingPage() {
       <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold font-[family-name:var(--font-montserrat)] text-black mb-4">
+            <h3 className="text-3xl font-bold font-[family-name:var(--font-montserrat)] text-black mb-4 animate-fade-in-up hover:scale-105 transition-all duration-300">
               Meet Your Business Catalyst
             </h3>
-            <p className="text-gray-900 font-[family-name:var(--font-open-sans)] max-w-2xl mx-auto">
+            <p
+              className="text-gray-900 font-[family-name:var(--font-open-sans)] max-w-2xl mx-auto animate-fade-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
               Hi, I'm Thomas Chillemi - Your Business Transformation Expert
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <Card className="bg-white shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-blue-200 overflow-hidden">
+            <Card className="bg-white shadow-xl hover:shadow-2xl transition-all duration-700 hover:-translate-y-4 hover:rotate-1 border-blue-200 overflow-hidden animate-fade-in-up group">
               <CardContent className="p-8">
                 <div className="flex flex-col lg:flex-row items-center gap-8">
                   <div className="flex-shrink-0">
-                    <div className="w-32 h-32 bg-blue-900 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg hover:scale-105 transition-all duration-300">
-                      TC
+                    <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg hover:scale-110 hover:rotate-12 transition-all duration-500 animate-pulse-gentle group-hover:animate-wiggle">
+                      <Image
+                        src="/images/thomas-chillemi.jpg"
+                        alt="Thomas Chillemi - Business Development Executive"
+                        width={128}
+                        height={128}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
 
                   <div className="flex-1 text-center lg:text-left">
-                    <h4 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-gray-800 mb-2">
+                    <h4 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-gray-800 mb-2 hover:text-blue-600 transition-colors duration-300">
                       Thomas Chillemi
                     </h4>
-                    <div className="text-blue-600 font-semibold mb-4 flex items-center justify-center lg:justify-start gap-2">
-                      <TrendingUp className="h-5 w-5" />
+                    <div className="text-blue-600 font-semibold mb-4 flex items-center justify-center lg:justify-start gap-2 hover:scale-105 transition-all duration-300">
+                      <TrendingUp className="h-5 w-5 animate-wiggle" />
                       Business Development Executive
                     </div>
 
-                    <p className="text-gray-600 font-[family-name:var(--font-open-sans)] mb-6 leading-relaxed">
+                    <p className="text-gray-600 font-[family-name:var(--font-open-sans)] mb-6 leading-relaxed hover:text-gray-700 transition-colors duration-300">
                       With over 15 years of experience in small business funding and financial strategy, I've helped
                       over 1,000 entrepreneurs secure fast, flexible capital to grow, recover, and scale. Our mission is
                       simple: To help you access the funding you deserve without the delays, denials, or red tape.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                      <div className="bg-blue-50 p-4 rounded-lg text-center hover:bg-blue-100 transition-all duration-300">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">1,000+</div>
+                      <div className="bg-blue-50 p-4 rounded-lg text-center hover:bg-blue-100 hover:scale-110 hover:rotate-2 transition-all duration-500 cursor-pointer animate-fade-in-up">
+                        <div className="text-2xl font-bold text-blue-600 mb-1 animate-number-count">1,000+</div>
                         <div className="text-sm text-gray-600">Clients Served</div>
                       </div>
-                      <div className="bg-blue-50 p-4 rounded-lg text-center hover:bg-blue-100 transition-all duration-300">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">$50M+</div>
+                      <div
+                        className="bg-blue-50 p-4 rounded-lg text-center hover:bg-blue-100 hover:scale-110 hover:rotate-2 transition-all duration-500 cursor-pointer animate-fade-in-up"
+                        style={{ animationDelay: "0.1s" }}
+                      >
+                        <div className="text-2xl font-bold text-blue-600 mb-1 animate-number-count">$50M+</div>
                         <div className="text-sm text-gray-600">Funded</div>
                       </div>
-                      <div className="bg-blue-50 p-4 rounded-lg text-center hover:bg-blue-100 transition-all duration-300">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">92%</div>
+                      <div
+                        className="bg-blue-50 p-4 rounded-lg text-center hover:bg-blue-100 hover:scale-110 hover:rotate-2 transition-all duration-500 cursor-pointer animate-fade-in-up"
+                        style={{ animationDelay: "0.2s" }}
+                      >
+                        <div className="text-2xl font-bold text-blue-600 mb-1 animate-number-count">95%</div>
                         <div className="text-sm text-gray-600">Success Rate</div>
                       </div>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                      <Button className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-105 transition-all duration-300 group">
-                        <Mail className="mr-2 h-4 w-4" />
+                      <Button className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-110 hover:rotate-1 transition-all duration-300 group shadow-lg hover:shadow-xl">
+                        <Mail className="mr-2 h-4 w-4 animate-wiggle" />
                         Contact Thomas
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 group-hover:scale-125 transition-transform duration-300" />
                       </Button>
                       <Button
                         variant="outline"
-                        className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:scale-105 transition-all duration-300 bg-transparent"
+                        className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:scale-110 hover:rotate-1 transition-all duration-300 bg-transparent shadow-lg hover:shadow-xl"
                       >
-                        <Phone className="mr-2 h-4 w-4" />
+                        <Phone className="mr-2 h-4 w-4 animate-wiggle" />
                         Schedule Meeting
                       </Button>
                     </div>
@@ -681,6 +739,49 @@ export default function HarvestLendingPage() {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
         }
+        @keyframes float-complex {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          25% { transform: translateY(-15px) rotate(5deg); }
+          50% { transform: translateY(-30px) rotate(0deg); }
+          75% { transform: translateY(-15px) rotate(-5deg); }
+        }
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50% { transform: translateY(-40px) scale(1.1); }
+        }
+        @keyframes wiggle {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(3deg); }
+          75% { transform: rotate(-3deg); }
+        }
+        @keyframes bounce-gentle {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-30px); }
+        }
+        @keyframes pulse-gentle {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.6; }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes gradient-shift {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        @keyframes number-count {
+          from { transform: scale(0.8); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
         @keyframes fade-in-up {
           from {
             opacity: 0;
@@ -693,6 +794,37 @@ export default function HarvestLendingPage() {
         }
         .animate-float {
           animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-complex {
+          animation: float-complex 8s ease-in-out infinite;
+        }
+        .animate-float-slow {
+          animation: float-slow 10s ease-in-out infinite;
+        }
+        .animate-wiggle {
+          animation: wiggle 2s ease-in-out infinite;
+        }
+        .animate-bounce-gentle {
+          animation: bounce-gentle 3s ease-in-out infinite;
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 4s ease-in-out infinite;
+        }
+        .animate-pulse-gentle {
+          animation: pulse-gentle 3s ease-in-out infinite;
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 4s ease-in-out infinite;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+        .animate-gradient-shift {
+          animation: gradient-shift 6s ease infinite;
+          background-size: 200% 200%;
+        }
+        .animate-number-count {
+          animation: number-count 1s ease-out;
         }
         .animate-fade-in-up {
           animation: fade-in-up 0.6s ease-out forwards;
