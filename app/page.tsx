@@ -194,7 +194,7 @@ export default function HarvestLendingPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="animate-fade-in-up hover:scale-110 transition-all duration-500 cursor-pointer">
-              <div className="text-4xl font-bold mb-2 animate-number-count text-blue-400">{counters.satisfaction}%</div>
+              <div className="text-4xl font-bold mb-2 animate-number-count text-blue-400">95%</div>
               <div className="text-slate-200 hover:text-white transition-colors duration-300">Client Success Rate</div>
             </div>
             <div
