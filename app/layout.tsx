@@ -25,6 +25,10 @@ export const metadata: Metadata = {
   description:
     "Get fast, competitive loans with Harvest Lending. Professional lending solutions for your financial needs.",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({
