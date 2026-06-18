@@ -93,8 +93,9 @@ export default function HarvestLendingPage() {
       {/* Header */}
       <header className="bg-slate-800 text-white shadow-sm sticky top-0 z-50 backdrop-blur-sm bg-slate-800/95">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div
-            className={`flex items-center space-x-3 transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}
+          <a
+            href="#home"
+            className={`flex items-center space-x-3 transition-all duration-700 cursor-pointer ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}
           >
             <Image
               src="/images/harvest-logo.png"
@@ -106,7 +107,7 @@ export default function HarvestLendingPage() {
             <h1 className="text-2xl font-black font-[family-name:var(--font-montserrat)] hover:text-blue-300 transition-colors duration-300">
               Harvest Lending
             </h1>
-          </div>
+          </a>
           <nav
             className={`hidden md:flex items-center space-x-6 transition-all duration-700 delay-300 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
           >
@@ -118,7 +119,7 @@ export default function HarvestLendingPage() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
-              href="#about"
+              href="/about"
               className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110 relative group"
             >
               About
@@ -150,7 +151,7 @@ export default function HarvestLendingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-50 to-blue-50 py-20 lg:py-32 overflow-hidden">
+      <section id="home" className="relative bg-gradient-to-br from-slate-50 to-blue-50 py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div
             className="absolute top-20 left-10 w-20 h-20 bg-blue-400/20 rounded-full animate-bounce-slow"
@@ -490,7 +491,58 @@ export default function HarvestLendingPage() {
         </div>
       </section>
 
-      <section id="services" className="py-16 bg-slate-50">
+      <section id="services" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold font-[family-name:var(--font-montserrat)] text-gray-800 mb-4">
+              Comprehensive Business Funding Solutions
+            </h3>
+            <p className="text-gray-600 font-[family-name:var(--font-open-sans)] max-w-2xl mx-auto">
+              Whether you're expanding, overcoming cash flow gaps, or recovering from a bank denial, We have the
+              expertise and capital to move your business forward.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: Shield, title: "SBA Funding", rate: "Low rates", amount: "Long terms", color: "blue-500" },
+              {
+                icon: Globe,
+                title: "Equipment Financing",
+                rate: "Flexible",
+                amount: "New machinery",
+                color: "blue-600",
+              },
+              {
+                icon: TrendingUp,
+                title: "Merchant Cash Advance",
+                rate: "Immediate",
+                amount: "Working capital",
+                color: "blue-700",
+              },
+              { icon: Zap, title: "Business Growth", rate: "Revenue", amount: "Up to $500K", color: "blue-800" },
+            ].map(({ icon: Icon, title, rate, amount, color }, index) => (
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 bg-white border-blue-200"
+              >
+                <CardContent className="pt-6">
+                  <div
+                    className={`w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:bg-blue-200`}
+                  >
+                    <Icon className={`h-8 w-8 text-${color}`} />
+                  </div>
+                  <h4 className="font-bold text-gray-800 mb-2">{title}</h4>
+                  <div className="text-lg font-bold text-blue-600 mb-1">{rate}</div>
+                  <div className="text-sm text-gray-500">{amount}</div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold font-[family-name:var(--font-montserrat)] text-gray-800 mb-4">
@@ -557,57 +609,6 @@ export default function HarvestLendingPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold font-[family-name:var(--font-montserrat)] text-gray-800 mb-4">
-              Comprehensive Business Funding Solutions
-            </h3>
-            <p className="text-gray-600 font-[family-name:var(--font-open-sans)] max-w-2xl mx-auto">
-              Whether you're expanding, overcoming cash flow gaps, or recovering from a bank denial, We have the
-              expertise and capital to move your business forward.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Shield, title: "SBA Funding", rate: "Low rates", amount: "Long terms", color: "blue-500" },
-              {
-                icon: Globe,
-                title: "Equipment Financing",
-                rate: "Flexible",
-                amount: "New machinery",
-                color: "blue-600",
-              },
-              {
-                icon: TrendingUp,
-                title: "Merchant Cash Advance",
-                rate: "Immediate",
-                amount: "Working capital",
-                color: "blue-700",
-              },
-              { icon: Zap, title: "Business Growth", rate: "Revenue", amount: "Up to $500K", color: "blue-800" },
-            ].map(({ icon: Icon, title, rate, amount, color }, index) => (
-              <Card
-                key={index}
-                className="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 bg-white border-blue-200"
-              >
-                <CardContent className="pt-6">
-                  <div
-                    className={`w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 hover:bg-blue-200`}
-                  >
-                    <Icon className={`h-8 w-8 text-${color}`} />
-                  </div>
-                  <h4 className="font-bold text-gray-800 mb-2">{title}</h4>
-                  <div className="text-lg font-bold text-blue-600 mb-1">{rate}</div>
-                  <div className="text-sm text-gray-500">{amount}</div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="testimonials" className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -667,7 +668,7 @@ export default function HarvestLendingPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section id="about" className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold font-[family-name:var(--font-montserrat)] text-black mb-4 animate-fade-in-up hover:scale-105 transition-all duration-300">
