@@ -81,7 +81,7 @@ export default function AboutPage() {
               Reviews
             </Link>
             <Link
-              href="/#contact"
+              href="/contact"
               className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110"
             >
               Contact

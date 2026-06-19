@@ -133,19 +133,21 @@ export default function HarvestLendingPage() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
-              href="#contact"
+              href="/contact"
               className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110 relative group"
             >
               Contact
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
             </a>
-            <Button
-              variant="secondary"
-              className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-110 hover:rotate-2 transition-all duration-300 group shadow-lg hover:shadow-2xl animate-pulse-slow"
-            >
-              Apply Now
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 group-hover:scale-125 transition-transform duration-300" />
-            </Button>
+            <a href="/contact">
+              <Button
+                variant="secondary"
+                className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-110 hover:rotate-2 transition-all duration-300 group shadow-lg hover:shadow-2xl animate-pulse-slow"
+              >
+                Apply Now
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 group-hover:scale-125 transition-transform duration-300" />
+              </Button>
+            </a>
           </nav>
         </div>
       </header>
@@ -361,14 +363,16 @@ export default function HarvestLendingPage() {
                           ${calculatedRate.min.toLocaleString()} - ${calculatedRate.max.toLocaleString()}
                         </div>
                         <p className="text-sm text-gray-600 mb-4">Based on 100% to 150% of your monthly revenue</p>
-                        <Button
-                          size="sm"
-                          className="bg-blue-600 hover:bg-blue-500 text-white"
-                          onClick={() => setIsDialogOpen(false)}
-                        >
-                          Apply Now
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
+                        <a href="/contact">
+                          <Button
+                            size="sm"
+                            className="bg-blue-600 hover:bg-blue-500 text-white"
+                            onClick={() => setIsDialogOpen(false)}
+                          >
+                            Apply Now
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </a>
                       </div>
                     </div>
                   )}
@@ -734,19 +738,14 @@ export default function HarvestLendingPage() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                      <Button className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-110 hover:rotate-1 transition-all duration-300 group shadow-lg hover:shadow-xl">
-                        <Mail className="mr-2 h-4 w-4 animate-wiggle" />
-                        Contact Thomas
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 group-hover:scale-125 transition-transform duration-300" />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:scale-110 hover:rotate-1 transition-all duration-300 bg-transparent shadow-lg hover:shadow-xl"
-                      >
-                        <Phone className="mr-2 h-4 w-4 animate-wiggle" />
-                        Schedule Meeting
-                      </Button>
+                    <div className="flex justify-center lg:justify-start">
+                      <a href="/contact">
+                        <Button className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-110 hover:rotate-1 transition-all duration-300 group shadow-lg hover:shadow-xl">
+                          <Mail className="mr-2 h-4 w-4 animate-wiggle" />
+                          Contact Us
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 group-hover:scale-125 transition-transform duration-300" />
+                        </Button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -787,21 +786,26 @@ export default function HarvestLendingPage() {
             className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up"
             style={{ animationDelay: "0.4s" }}
           >
-            <Button
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-500 text-white font-semibold hover:scale-105 transition-all duration-300 group shadow-lg hover:shadow-xl"
-            >
-              Start Your Application
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-slate-800 bg-transparent hover:scale-105 transition-all duration-300 group"
-            >
-              <Phone className="h-4 w-4 mr-2" />
-              Speak with an Expert
-            </Button>
+            <a href="/contact">
+              <Button
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold hover:scale-105 transition-all duration-300 group shadow-lg hover:shadow-xl"
+              >
+                Start Your Application
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </a>
+            <a href="tel:+12122875263">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-slate-800 bg-transparent hover:scale-105 transition-all duration-300 group"
+              >
+                <Phone className="h-4 w-4 mr-2" />
+                <span className="group-hover:hidden">Speak with an Expert</span>
+                <span className="hidden group-hover:inline">+1 212-287-5263</span>
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -826,22 +830,28 @@ export default function HarvestLendingPage() {
                 flexible capital.
               </p>
               <div className="flex space-x-4">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="hover:scale-105 transition-all duration-300 bg-transparent border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
-                >
-                  <Phone className="h-4 w-4 mr-2" />
-                  Call Us
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="hover:scale-105 transition-all duration-300 bg-transparent border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
-                >
-                  <Mail className="h-4 w-4 mr-2" />
-                  Email
-                </Button>
+                <a href="tel:+12122875263">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="hover:scale-105 transition-all duration-300 bg-transparent border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white group"
+                  >
+                    <Phone className="h-4 w-4 mr-2" />
+                    <span className="group-hover:hidden">Call Us</span>
+                    <span className="hidden group-hover:inline">+1 212-287-5263</span>
+                  </Button>
+                </a>
+                <a href="mailto:team@harvestlending.com">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="hover:scale-105 transition-all duration-300 bg-transparent border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white group"
+                  >
+                    <Mail className="h-4 w-4 mr-2" />
+                    <span className="group-hover:hidden">Email</span>
+                    <span className="hidden group-hover:inline">team@harvestlending.com</span>
+                  </Button>
+                </a>
               </div>
             </div>
 
@@ -875,7 +885,7 @@ export default function HarvestLendingPage() {
               <h5 className="font-semibold font-[family-name:var(--font-montserrat)] mb-3 text-blue-400">Company</h5>
               <ul className="space-y-2 text-sm font-[family-name:var(--font-open-sans)]">
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                  <a href="/about" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
                     About Us
                   </a>
                 </li>
@@ -890,7 +900,7 @@ export default function HarvestLendingPage() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                  <a href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
                     Contact
                   </a>
                 </li>
@@ -901,23 +911,13 @@ export default function HarvestLendingPage() {
               <h5 className="font-semibold font-[family-name:var(--font-montserrat)] mb-3 text-blue-400">Legal</h5>
               <ul className="space-y-2 text-sm font-[family-name:var(--font-open-sans)]">
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                  <a href="/privacy" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                  <a href="/terms" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
                     Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
-                    Compliance
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
-                    Licensing
                   </a>
                 </li>
               </ul>
