@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server"
+import { createClient } from "@supabase/supabase-js"
+
+export const runtime = "nodejs"
 
 export async function POST(req: Request) {
   try {
@@ -8,40 +11,33 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Missing required fields." }, { status: 400 })
     }
 
-    const accessKey = process.env.WEB3FORMS_ACCESS_KEY
-    if (!accessKey) {
+    const url = process.env.SUPABASE_URL
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    if (!url || !serviceKey) {
       return NextResponse.json(
-        { ok: false, error: "Email service is not configured yet." },
+        { ok: false, error: "Database is not configured yet." },
         { status: 500 },
       )
     }
 
-    const fullName = `${firstName} ${lastName}`.trim()
-
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        access_key: accessKey,
-        from_name: "Harvest Lending Website",
-        subject: `${fullName} is looking to connect`,
-        // Reply-To is set to the visitor's email so the team can respond directly.
-        replyto: email,
-        message:
-          `${fullName} is looking to connect.\n\n` +
-          `Name: ${fullName}\n` +
-          `Phone: ${phone}\n` +
-          `Email: ${email}\n` +
-          `Marketing SMS consent: ${marketing ? "Yes" : "No"}\n` +
-          `Non-marketing SMS consent: ${nonMarketing ? "Yes" : "No"}`,
-      }),
+    const supabase = createClient(url, serviceKey, {
+      auth: { persistSession: false },
     })
 
-    const data = await res.json()
-    if (data.success) {
-      return NextResponse.json({ ok: true })
+    const { error } = await supabase.from("contact_submissions").insert({
+      first_name: firstName,
+      last_name: lastName,
+      phone,
+      email,
+      marketing_consent: !!marketing,
+      non_marketing_consent: !!nonMarketing,
+    })
+
+    if (error) {
+      return NextResponse.json({ ok: false, error: error.message }, { status: 502 })
     }
-    return NextResponse.json({ ok: false, error: data.message || "Failed to send." }, { status: 502 })
+
+    return NextResponse.json({ ok: true })
   } catch {
     return NextResponse.json({ ok: false, error: "Unexpected error." }, { status: 500 })
   }
