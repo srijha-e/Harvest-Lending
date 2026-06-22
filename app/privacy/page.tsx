@@ -150,7 +150,7 @@ export default function PrivacyPage() {
             </ul>
             <p className="mb-2 font-semibold text-amber-900">Opt-Out Instructions:</p>
             <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li>You can cancel SMS notifications at any time by replying &ldquo;STOP&rdquo; to +1 212-287-5263</li>
+              <li>You can cancel SMS notifications at any time by replying &ldquo;STOP&rdquo; to +1 347-831-7014</li>
               <li>You will receive a final confirmation message, and no further messages will be sent unless you re-opt in</li>
               <li>All opt-out requests are processed within 24 hours</li>
             </ul>
@@ -163,7 +163,7 @@ export default function PrivacyPage() {
             </ul>
             <p className="mb-2 font-semibold text-amber-900">Help &amp; Support:</p>
             <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li>Reply &ldquo;HELP&rdquo; to +1 212-287-5263 for assistance or contact us at team@harvestlending.com</li>
+              <li>Reply &ldquo;HELP&rdquo; to +1 347-831-7014 for assistance or contact us at team@harvestlending.com</li>
               <li>Customer support is available during regular business hours</li>
             </ul>
             <p className="mb-2 font-semibold text-amber-900">Carrier Information:</p>
@@ -222,7 +222,7 @@ export default function PrivacyPage() {
             <ul className="list-disc pl-6 space-y-1 mb-4">
               <li>Access, update, or delete your personal information</li>
               <li>Opt-out of marketing emails by clicking &ldquo;unsubscribe&rdquo;</li>
-              <li>Opt-out of SMS messages by replying &ldquo;STOP&rdquo; to +1 212-287-5263</li>
+              <li>Opt-out of SMS messages by replying &ldquo;STOP&rdquo; to +1 347-831-7014</li>
               <li>Request information on how we process your data</li>
               <li>Withdraw consent at any time for future communications</li>
               <li>Lodge a complaint with a supervisory authority if you believe your rights have been violated</li>
@@ -253,7 +253,7 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-none pl-0 space-y-1 mb-8">
               <li className="font-semibold text-amber-900">HARVEST LENDING INC.</li>
-              <li>📞 Phone: +1 212-287-5263</li>
+              <li>📞 Phone: +1 347-831-7014</li>
               <li>✉️ Email: team@harvestlending.com</li>
               <li>🌐 Website: https://harvestlending.com</li>
             </ul>

@@ -319,7 +319,7 @@ export default function TermsPage() {
             <ul className="list-none pl-0 space-y-1 mb-8">
               <li className="font-semibold text-amber-900">HARVEST LENDING INC.</li>
               <li>📧 team@harvestlending.com</li>
-              <li>📞 +1 212-287-5263</li>
+              <li>📞 +1 347-831-7014</li>
               <li>🌐 https://harvestlending.com</li>
             </ul>
 

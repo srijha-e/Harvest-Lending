@@ -257,8 +257,8 @@ export default function ContactPage() {
             </div>
             <div className="flex flex-col items-center">
               <Phone className="h-6 w-6 text-amber-600 mb-2" />
-              <a href="tel:+12122875263" className="text-stone-600 hover:text-amber-600 text-sm">
-                +1 212-287-5263
+              <a href="tel:+13478317014" className="text-stone-600 hover:text-amber-600 text-sm">
+                +1 347-831-7014
               </a>
             </div>
             <div className="flex flex-col items-center">

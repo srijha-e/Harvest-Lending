@@ -797,7 +797,7 @@ export default function HarvestLendingPage() {
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </a>
-            <a href="tel:+12122875263">
+            <a href="tel:+13478317014">
               <Button
                 size="lg"
                 variant="outline"
@@ -805,7 +805,7 @@ export default function HarvestLendingPage() {
               >
                 <Phone className="h-4 w-4 mr-2" />
                 <span className="group-hover:hidden">Speak with an Expert</span>
-                <span className="hidden group-hover:inline">+1 212-287-5263</span>
+                <span className="hidden group-hover:inline">+1 347-831-7014</span>
               </Button>
             </a>
           </div>
@@ -832,7 +832,7 @@ export default function HarvestLendingPage() {
                 flexible capital.
               </p>
               <div className="flex space-x-4">
-                <a href="tel:+12122875263">
+                <a href="tel:+13478317014">
                   <Button
                     size="sm"
                     variant="outline"
@@ -840,7 +840,7 @@ export default function HarvestLendingPage() {
                   >
                     <Phone className="h-4 w-4 mr-2" />
                     <span className="group-hover:hidden">Call Us</span>
-                    <span className="hidden group-hover:inline">+1 212-287-5263</span>
+                    <span className="hidden group-hover:inline">+1 347-831-7014</span>
                   </Button>
                 </a>
                 <a href="mailto:team@harvestlending.com">
