@@ -12,63 +12,65 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-slate-800 text-white shadow-sm sticky top-0 z-50 backdrop-blur-sm bg-slate-800/95">
+      <header className="bg-amber-900 text-white shadow-sm sticky top-0 z-50 backdrop-blur-sm bg-amber-900/95">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3 cursor-pointer">
             <Image
               src="/images/harvest-logo.png"
               alt="Harvest Lending Logo"
-              width={40}
-              height={40}
+              width={56}
+              height={56}
               className="rounded-lg hover:animate-bounce transition-all duration-300"
             />
-            <h1 className="text-2xl font-black font-[family-name:var(--font-montserrat)] hover:text-blue-300 transition-colors duration-300">
+            <h1 className="text-2xl font-black font-[family-name:var(--font-montserrat)] hover:text-amber-300 transition-colors duration-300">
               Harvest Lending
             </h1>
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
             <Link
               href="/"
-              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110"
+              className="font-[family-name:var(--font-open-sans)] hover:text-amber-300 transition-all duration-300 hover:scale-110"
             >
               Home
             </Link>
             <Link
-              href="/#services"
-              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110"
+              href="/services"
+              className="font-[family-name:var(--font-open-sans)] hover:text-amber-300 transition-all duration-300 hover:scale-110"
             >
               Services
             </Link>
             <Link
               href="/about"
-              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110"
+              className="font-[family-name:var(--font-open-sans)] hover:text-amber-300 transition-all duration-300 hover:scale-110"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="font-[family-name:var(--font-open-sans)] hover:text-blue-300 transition-all duration-300 hover:scale-110"
+              className="font-[family-name:var(--font-open-sans)] hover:text-amber-300 transition-all duration-300 hover:scale-110"
             >
               Contact
             </Link>
-            <Button
-              variant="secondary"
-              className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-110 transition-all duration-300 group shadow-lg"
-            >
-              Apply Now
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
-            </Button>
+            <a href="https://application.croccrm.com/" target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="secondary"
+                className="bg-amber-600 hover:bg-amber-500 text-white hover:scale-110 transition-all duration-300 group shadow-lg"
+              >
+                Apply Now
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
+              </Button>
+            </a>
           </nav>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-slate-50 to-blue-50 py-16">
+      <section className="bg-gradient-to-br from-amber-50 to-yellow-100 py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl lg:text-5xl font-black font-[family-name:var(--font-montserrat)] text-slate-800 mb-3">
+          <h2 className="text-4xl lg:text-5xl font-black font-[family-name:var(--font-montserrat)] text-amber-900 mb-3">
             Terms of Service
           </h2>
-          <p className="text-slate-600 font-[family-name:var(--font-open-sans)]">
+          <p className="text-stone-600 font-[family-name:var(--font-open-sans)]">
             HARVEST LENDING INC. &mdash; Effective Date: November 1, 2025
           </p>
         </div>
@@ -77,7 +79,7 @@ export default function TermsPage() {
       {/* Content */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <article className="max-w-3xl mx-auto font-[family-name:var(--font-open-sans)] text-slate-600 leading-relaxed">
+          <article className="max-w-3xl mx-auto font-[family-name:var(--font-open-sans)] text-stone-600 leading-relaxed">
             <p className="mb-4">
               Welcome to our website. If you continue to browse and use this website, you are agreeing to comply with and
               be bound by the following terms and conditions of use, which together with our privacy policy govern HARVEST
@@ -91,7 +93,7 @@ export default function TermsPage() {
               information.
             </p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               1. Acceptance of Terms
             </h3>
             <p className="mb-4">
@@ -101,7 +103,7 @@ export default function TermsPage() {
             </p>
             <p className="mb-4">If you do not agree with these Terms, please discontinue use of the website and our services.</p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               2. About Our Services
             </h3>
             <p className="mb-4">
@@ -119,14 +121,14 @@ export default function TermsPage() {
               <li>Services officially begin</li>
             </ul>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               3. Eligibility
             </h3>
             <p className="mb-4">
               You must be at least 18 years old to use this website or request services from HARVEST LENDING INC..
             </p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               4. User Responsibilities
             </h3>
             <p className="mb-2">By using this site, you agree that you will not:</p>
@@ -138,7 +140,7 @@ export default function TermsPage() {
             </ul>
             <p className="mb-4">Unauthorized use may result in termination of access or legal action.</p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               5. Intellectual Property
             </h3>
             <p className="mb-4">
@@ -152,7 +154,7 @@ export default function TermsPage() {
             </ul>
             <p className="mb-4">Limited, personal, non-commercial use is permitted.</p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               6. Communications &amp; Messaging (SMS, Email, Phone)
             </h3>
             <p className="mb-4">
@@ -160,13 +162,13 @@ export default function TermsPage() {
               communications related to our services. These may include service updates, appointment confirmations,
               document-related inquiries, transactional messages, and customer support communications.
             </p>
-            <p className="mb-2 font-semibold text-slate-800">Business Identity Clause</p>
+            <p className="mb-2 font-semibold text-amber-900">Business Identity Clause</p>
             <p className="mb-4">
               HARVEST LENDING INC. may send SMS or other electronic messages related to our services, including document
               status updates, appointment reminders, transactional notifications, and customer support communications.
             </p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               7. Opt-Out &amp; Support Mechanisms (SMS Terms)
             </h3>
             <p className="mb-4">
@@ -187,7 +189,7 @@ export default function TermsPage() {
               <li>Phone: 347-831-7014</li>
             </ul>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               8. Message Frequency &amp; Rates
             </h3>
             <p className="mb-4">Message frequency may vary depending on your interaction with our services.</p>
@@ -197,12 +199,12 @@ export default function TermsPage() {
               have any questions about your text plan or data plan, it is best to contact your wireless provider.
             </p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               9. Carrier Liability Clause
             </h3>
             <p className="mb-4">Carriers are not liable for delayed or undelivered messages.</p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               10. Quotes, Billing, and Payments
             </h3>
             <ul className="list-disc pl-6 space-y-1 mb-4">
@@ -211,7 +213,7 @@ export default function TermsPage() {
               <li>Failure to pay invoices on time may result in service delays, suspension, or termination.</li>
             </ul>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               11. Service Modifications and Availability
             </h3>
             <ul className="list-disc pl-6 space-y-1 mb-4">
@@ -219,7 +221,7 @@ export default function TermsPage() {
               <li>We do not guarantee that the website will always be available, uninterrupted, or error-free.</li>
             </ul>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               12. Third-Party Links
             </h3>
             <p className="mb-4">
@@ -230,7 +232,7 @@ export default function TermsPage() {
               We are not responsible for the content, security, or privacy practices of external websites.
             </p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               13. Disclaimer of Warranties
             </h3>
             <p className="mb-4">The website and all content are provided &ldquo;as is&rdquo; and &ldquo;as available.&rdquo;</p>
@@ -242,7 +244,7 @@ export default function TermsPage() {
             </ul>
             <p className="mb-4">Use the site and services at your own risk.</p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               14. Limitation of Liability
             </h3>
             <p className="mb-2">
@@ -257,7 +259,7 @@ export default function TermsPage() {
             </ul>
             <p className="mb-4">In all cases, our liability is limited to the amount you paid for services, if applicable.</p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               15. Indemnification
             </h3>
             <p className="mb-2">
@@ -270,7 +272,7 @@ export default function TermsPage() {
               <li>Unauthorized access or actions taken using your information</li>
             </ul>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               16. Governing Law &amp; Dispute Resolution
             </h3>
             <ul className="list-disc pl-6 space-y-1 mb-4">
@@ -278,7 +280,7 @@ export default function TermsPage() {
               <li>Any disputes will be resolved through binding arbitration in North Carolina unless otherwise required by law.</li>
             </ul>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               17. Termination
             </h3>
             <p className="mb-4">
@@ -289,18 +291,18 @@ export default function TermsPage() {
               Upon termination, you must immediately cease use of the website and destroy any downloaded materials.
             </p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               18. Privacy Policy
             </h3>
             <p className="mb-4">
               If you have any questions regarding privacy, please read our{" "}
-              <Link href="/privacy" className="text-blue-600 hover:underline">
+              <Link href="/privacy" className="text-amber-600 hover:underline">
                 Privacy Policy
               </Link>
               .
             </p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               19. Changes to These Terms
             </h3>
             <p className="mb-4">
@@ -310,20 +312,20 @@ export default function TermsPage() {
               Your continued use of the website after revisions indicates acceptance of the updated Terms.
             </p>
 
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-slate-800 mt-10 mb-2">
+            <h3 className="text-2xl font-bold font-[family-name:var(--font-montserrat)] text-amber-900 mt-10 mb-2">
               20. Contact Information
             </h3>
             <p className="mb-2">For questions or concerns regarding these Terms of Service, please contact:</p>
             <ul className="list-none pl-0 space-y-1 mb-8">
-              <li className="font-semibold text-slate-800">HARVEST LENDING INC.</li>
+              <li className="font-semibold text-amber-900">HARVEST LENDING INC.</li>
               <li>📧 team@harvestlending.com</li>
               <li>📞 +1 212-287-5263</li>
               <li>🌐 https://harvestlending.com</li>
             </ul>
 
-            <div className="border-t border-slate-200 pt-6">
+            <div className="border-t border-stone-200 pt-6">
               <p className="mb-4">
-                <span className="font-semibold text-slate-800">Privacy Policy:</span> Your privacy is very important to
+                <span className="font-semibold text-amber-900">Privacy Policy:</span> Your privacy is very important to
                 us. Your information will be used to contact you and provide assistance with your financial document
                 preparation. We will not sell, rent, spam, or otherwise use this information for any other purpose.
               </p>
@@ -333,12 +335,12 @@ export default function TermsPage() {
       </section>
 
       {/* Back to home */}
-      <section className="py-12 bg-slate-800 text-white">
+      <section className="py-12 bg-amber-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <Link href="/">
             <Button
               variant="secondary"
-              className="bg-blue-600 hover:bg-blue-500 text-white hover:scale-105 transition-all duration-300 group shadow-lg"
+              className="bg-amber-600 hover:bg-amber-500 text-white hover:scale-105 transition-all duration-300 group shadow-lg"
             >
               Back to Home
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
