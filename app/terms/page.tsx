@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { SiteFooter } from "@/components/site-footer"
+import { FundingNav } from "@/components/funding-nav"
+import { CreditNav } from "@/components/credit-nav"
 
 export const metadata = {
   title: "Terms of Service | Harvest Lending",
@@ -26,6 +29,11 @@ export default function TermsPage() {
               Harvest Lending
             </h1>
           </Link>
+          <a href="https://application.croccrm.com/" target="_blank" rel="noopener noreferrer" className="md:hidden">
+            <Button size="sm" className="bg-amber-600 hover:bg-amber-500 text-white font-semibold">
+              Apply
+            </Button>
+          </a>
           <nav className="hidden md:flex items-center space-x-6">
             <Link
               href="/"
@@ -33,12 +41,8 @@ export default function TermsPage() {
             >
               Home
             </Link>
-            <Link
-              href="/services"
-              className="font-[family-name:var(--font-open-sans)] hover:text-amber-300 transition-all duration-300 hover:scale-110"
-            >
-              Services
-            </Link>
+            <FundingNav />
+            <CreditNav />
             <Link
               href="/about"
               className="font-[family-name:var(--font-open-sans)] hover:text-amber-300 transition-all duration-300 hover:scale-110"
@@ -348,6 +352,7 @@ export default function TermsPage() {
           </Link>
         </div>
       </section>
+      <SiteFooter />
     </div>
   )
 }
